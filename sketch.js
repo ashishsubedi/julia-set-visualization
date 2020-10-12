@@ -13,30 +13,28 @@
 let angle = Math.PI/2;
 
 let cx,cy;
-let w;
-let R = 2.0;
-const max_iter = 10;
+let frequency = 0.7855;
+let R = 1.5
+const max_iter = 50;
 let p;
 
 function setup() {
-    createCanvas(300, 300);
+    createCanvas(400, 400);
     background(0);
     frameRate(30);
   
-    [cx,cy] = [0.7855*cos(angle),0.7855*sin(angle)]
+    [cx,cy] = [frequency*cos(angle),frequency*sin(angle)]
     p = createP(frameRate());
 
 }
 
 function draw() {
     let value;
-    // colorMode(HSB);
+    colorMode(HSB);
     angle+=0.05;
     if(angle > 2*Math.PI) angle = 0;
 
-    // ca+=0.1;
-    // cb+=0.2;
-    [cx,cy] = [cos(angle),sin(angle)]
+    [cx,cy] =  [frequency*cos(angle),frequency*sin(angle)]
     loadPixels();
     for(let y=0;y<height;y++){
         for(let x=0;x<width;x++){  
@@ -53,10 +51,10 @@ function draw() {
             }
     
             if(iter == max_iter) {
-                value = color(0);
+                value = color(0,0,0);
             }
             else{
-                value = color(iter/max_iter*255);
+                value = color(iter/max_iter*255,100,100);
             } 
             set(width-x,y,value);
       
@@ -72,4 +70,8 @@ function draw() {
 function complexMul(a,b,c,d){
     return [a*c-b*d,a*d+b*c]
 }
-
+function changeParameters(){
+   frequency = parseFloat( document.getElementById('frequency').value) || frequency;
+   R = parseFloat(document.getElementById('R').value) || R;
+   redraw();
+}
