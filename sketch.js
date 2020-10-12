@@ -11,7 +11,7 @@
 // Complex number = a+bi => [a,b] in our represntation
 //0.7855e^ipi
 let angle = Math.PI/2;
-
+let speed = 0.05;
 let cx,cy;
 let frequency = 0.7855;
 let R = 1.5
@@ -31,7 +31,7 @@ function setup() {
 function draw() {
     let value;
     colorMode(HSB);
-    angle+=0.05;
+    angle+=speed;
     if(angle > 2*Math.PI) angle = 0;
 
     [cx,cy] =  [frequency*cos(angle),frequency*sin(angle)]
@@ -73,5 +73,6 @@ function complexMul(a,b,c,d){
 function changeParameters(){
    frequency = parseFloat( document.getElementById('frequency').value) || frequency;
    R = parseFloat(document.getElementById('R').value) || R;
+   speed = parseFloat(document.getElementById('speed').value) || speed;
    redraw();
 }
