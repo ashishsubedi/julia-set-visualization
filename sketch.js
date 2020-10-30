@@ -22,6 +22,7 @@ function setup() {
     createCanvas(400, 400);
     background(0);
     frameRate(30);
+    // createLoop({duration:5, gif:true})
   
     [cx,cy] = [frequency*cos(angle),frequency*sin(angle)]
     p = createP(frameRate());
@@ -74,5 +75,6 @@ function changeParameters(){
    frequency = parseFloat( document.getElementById('frequency').value) || frequency;
    R = parseFloat(document.getElementById('R').value) || R;
    speed = parseFloat(document.getElementById('speed').value) || speed;
+  
    redraw();
 }
